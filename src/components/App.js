@@ -7,7 +7,7 @@ import {createStackNavigator, createAppContainer} from 'react-navigation';
 import Authencation from './Authentication/Authentication';
 import ChangeInfo from './Info/ChangeInfo';
 import Main from './Main/Main';
-import OrderHistory from './Order/Order';
+import Order from './Order/Order';
 
 const MyRouter = createStackNavigator(
   {
@@ -29,8 +29,8 @@ const MyRouter = createStackNavigator(
         headerTitle: 'ChangeInfo',
       },
     },
-    Screen_OrderHistory: {
-      screen: OrderHistory,
+    Screen_Order: {
+      screen: Order,
       navigationOptions: {
         headerTitle: 'OrderHistory',
       },
