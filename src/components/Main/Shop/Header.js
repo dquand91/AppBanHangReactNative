@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
+import MyNavigatorService from '../../Navigation/MyNavigationService';
 
 // const screen = Dimensions.get('window');
 
@@ -21,7 +22,7 @@ export default class Header extends Component {
     return (
       <View style={view1}>
         <View style={view2}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => MyNavigatorService.openDrawer()}>
             <Image
               style={icon}
               source={require('../../../assets/appIcon/ic_menu.png')}
@@ -36,14 +37,7 @@ export default class Header extends Component {
         </View>
         <TextInput
           // eslint-disable-next-line react-native/no-inline-styles
-          style={{
-            backgroundColor: 'white',
-            borderColor: 'gray',
-            borderRadius: 6,
-            borderWidth: 1,
-            height: 40,
-            padding: 10,
-          }}
+          style={styles.inputText}
           placeholder="What do you want to buy?"
         />
       </View>
@@ -56,4 +50,12 @@ const styles = StyleSheet.create({
   view2: {flex: 1, flexDirection: 'row', justifyContent: 'space-between'},
   icon: {width: 25, height: 25},
   text: {fontSize: 18, fontWeight: 'bold', color: 'white'},
+  inputText: {
+    backgroundColor: 'white',
+    borderColor: 'gray',
+    borderRadius: 6,
+    borderWidth: 1,
+    height: 40,
+    padding: 10,
+  },
 });

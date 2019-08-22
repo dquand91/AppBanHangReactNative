@@ -3,7 +3,10 @@ import {
   createStackNavigator,
   createAppContainer,
   createBottomTabNavigator,
+  createDrawerNavigator,
 } from 'react-navigation';
+
+import MyNavigationService from './Navigation/MyNavigationService';
 
 // Nếu ở đây sửa tên file "Authencation.js" thành "index.js"
 // Thì mình chỉ cần import import Authencation from './src/components/Authencation';
@@ -13,12 +16,14 @@ import ChangeInfo from './Info/ChangeInfo';
 import Main from './Main/Main';
 import Order from './Order/Order';
 
-import {Image} from 'react-native';
+import {Image, Dimensions} from 'react-native';
 
 import Home from './Main/Shop/Home/Home';
 import Cart from './Main/Shop/Cart/Cart';
 import Search from './Main/Shop/Search/Search';
 import Contact from './Main/Shop/Contact/Contact';
+
+const {width} = Dimensions.get('window');
 
 const myRouterConfigs = {
   Tab_Home: {
@@ -93,7 +98,55 @@ const myBottomTabNavigator = createBottomTabNavigator(
   myBottomTabNavigatorConfig,
 );
 
-const AppContainer = createAppContainer(myBottomTabNavigator);
+// Drawer Config vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+const myDrawerRouteConfigs = {
+  Screen_Home_Of_Drawer: {
+    screen: myBottomTabNavigator,
+  },
+};
+
+const myDrawerNavigatorConfig = {
+  initialRouteName: 'Screen_Home_Of_Drawer',
+  // chiều rộng của drawer sẽ là phần nũa chiều rộng màn hình
+  drawerWidth: width / 2,
+  // drawer sẽ chạy từ trái ra
+  drawerPosition: 'left',
+  // headerMode - Specifies how the header should be rendered:
+  // float - Render a single header that stays at the top and animates as screens are changed. This is a common pattern on iOS.
+  // screen - Each screen has a header attached to it and the header fades in and out together with the screen. This is a common pattern on Android.
+  // none - No header will be rendered.
+  headerMode: 'screen',
+  drawerBackgroundColor: 'white',
+  useNativeAnimations: 'true',
+  contentOptions: {
+    activeTintColor: 'red',
+  },
+};
+
+const myDrawerNavigator = createDrawerNavigator(
+  myDrawerRouteConfigs,
+  myDrawerNavigatorConfig,
+);
+// Drawer Config ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// Stack Navigator Config vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+const myStackRouteConfigs = {
+  DrawerNavigator_Name: {
+    screen: myDrawerNavigator,
+  },
+};
+
+const myStackNavigatorCofig = {
+  initialRouteName: 'DrawerNavigator_Name',
+  headerMode: 'none',
+};
+
+const MyStackNavigator = createStackNavigator(
+  myStackRouteConfigs,
+  myStackNavigatorCofig,
+);
+// Stack Navigator Config ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+const AppContainer = createAppContainer(MyStackNavigator);
 
 // const MyRouter = createStackNavigator(
 //   {
@@ -131,6 +184,14 @@ const AppContainer = createAppContainer(myBottomTabNavigator);
 
 export default class App extends Component {
   render() {
-    return <AppContainer />;
+    return (
+      <AppContainer
+        // Dùng cách này để truyền được cái navigator vô trong MyNavigationService của mình
+        // Rồi mình dùng cái navigator đó điều khiển đóng mở Drawer
+        ref={navigatorRef => {
+          MyNavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+      />
+    );
   }
 }

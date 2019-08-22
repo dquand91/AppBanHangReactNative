@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, Platform} from 'react-native';
 import Collection from './Collection';
 import Header from '../Header';
 import Category from './Category';
@@ -13,7 +13,13 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View style={{flex: 1, backgroundColor: 'darkgray'}}>
+      <View
+        // eslint-disable-next-line react-native/no-inline-styles
+        style={{
+          flex: 1,
+          backgroundColor: 'darkgray',
+          marginTop: Platform.OS === 'ios' ? 30 : 0,
+        }}>
         <Header />
         <ScrollView>
           <Collection />

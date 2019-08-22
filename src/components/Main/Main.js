@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View, Platform} from 'react-native';
 import MyTouchable from '../CustomView/MyTouchable';
-import Header from './Shop/Header';
 export default class Main extends Component {
   render() {
     const {navigation} = this.props;
@@ -13,9 +12,6 @@ export default class Main extends Component {
           backgroundColor: 'lightskyblue',
           marginTop: Platform.OS === 'ios' ? 30 : 0,
         }}>
-        <View>
-          <Header />
-        </View>
         <View>
           <Text style={{color: '#ff0080'}}> Main component </Text>
           {/* MyTouchable là do mình custom, cần 2 props (tham số)
