@@ -15,13 +15,14 @@ import Order from './Order/Order';
 
 import {Image} from 'react-native';
 
+import Home from './Main/Shop/Home/Home';
 import Cart from './Main/Shop/Cart/Cart';
 import Search from './Main/Shop/Search/Search';
 import Contact from './Main/Shop/Contact/Contact';
 
 const myRouterConfigs = {
   Tab_Home: {
-    screen: Main,
+    screen: Home,
     navigationOptions: {
       tabBarLabel: 'Home',
       // Callback để xử lý hiển thị khi tab được chọn
