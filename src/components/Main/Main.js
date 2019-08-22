@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Platform} from 'react-native';
 import MyTouchable from '../CustomView/MyTouchable';
 import Header from './Shop/Header';
 export default class Main extends Component {
@@ -11,6 +11,7 @@ export default class Main extends Component {
         style={{
           flex: 1,
           backgroundColor: 'lightskyblue',
+          marginTop: Platform.OS === 'ios' ? 30 : 0,
         }}>
         <View>
           <Header />

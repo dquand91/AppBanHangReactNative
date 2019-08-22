@@ -79,10 +79,10 @@ const myRouterConfigs = {
 const myBottomTabNavigatorConfig = {
   tabBarOptions: {
     initialRouteName: 'Tab_Home',
-    // Màu  khi tab được chọn
+    // Màu chữ khi tab được chọn
     activeTintColor: 'green',
     inactiveBackgroundColor: '',
-    // Màu  khi tab chưa được chọn
+    // Màu chữ khi tab chưa được chọn
     inactiveTintColor: 'gray',
   },
 };
