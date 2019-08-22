@@ -11,9 +11,9 @@ import MyNavigationService from './Navigation/MyNavigationService';
 // Nếu ở đây sửa tên file "Authencation.js" thành "index.js"
 // Thì mình chỉ cần import import Authencation from './src/components/Authencation';
 // Nó sẽ tự động vào thư mục ./src/components/Authencation và tìm file index.js
-import Authencation from './Authentication/Authentication';
+// import Authencation from './Authentication/Authentication';
+// import Main from './Main/Main';
 import ChangeInfo from './Info/ChangeInfo';
-import Main from './Main/Main';
 import Order from './Order/Order';
 
 import {Image, Dimensions} from 'react-native';
@@ -22,6 +22,9 @@ import Home from './Main/Shop/Home/Home';
 import Cart from './Main/Shop/Cart/Cart';
 import Search from './Main/Shop/Search/Search';
 import Contact from './Main/Shop/Contact/Contact';
+import SignOut from './Authentication/Signout/SignOut';
+import Login from './Authentication/Login/Login';
+import CustomDrawerContentComponent from './CustomView/CustomDrawerContentComponent';
 
 const {width} = Dimensions.get('window');
 
@@ -100,13 +103,25 @@ const myBottomTabNavigator = createBottomTabNavigator(
 
 // Drawer Config vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 const myDrawerRouteConfigs = {
-  Screen_Home_Of_Drawer: {
+  Home_Screen: {
     screen: myBottomTabNavigator,
+  },
+  Order_Screen: {
+    screen: Order,
+  },
+  ChangeInfo_Screen: {
+    screen: ChangeInfo,
+  },
+  SignOut_Screen: {
+    screen: SignOut,
+  },
+  Login_Screen: {
+    screen: Login,
   },
 };
 
 const myDrawerNavigatorConfig = {
-  initialRouteName: 'Screen_Home_Of_Drawer',
+  initialRouteName: 'Home_Screen',
   // chiều rộng của drawer sẽ là phần nũa chiều rộng màn hình
   drawerWidth: width / 2,
   // drawer sẽ chạy từ trái ra
@@ -118,6 +133,7 @@ const myDrawerNavigatorConfig = {
   headerMode: 'screen',
   drawerBackgroundColor: 'white',
   useNativeAnimations: 'true',
+  contentComponent: CustomDrawerContentComponent,
   contentOptions: {
     activeTintColor: 'red',
   },

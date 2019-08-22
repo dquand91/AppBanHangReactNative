@@ -22,7 +22,9 @@ export default class Header extends Component {
     return (
       <View style={view1}>
         <View style={view2}>
-          <TouchableOpacity onPress={() => MyNavigatorService.openDrawer()}>
+          {/* <TouchableOpacity onPress={() => MyNavigatorService.openDrawer()}> */}
+          <TouchableOpacity
+            onPress={() => this.props.myNavigation.toggleDrawer()}>
             <Image
               style={icon}
               source={require('../../../assets/appIcon/ic_menu.png')}

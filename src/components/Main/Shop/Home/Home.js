@@ -20,7 +20,7 @@ export default class Home extends Component {
           backgroundColor: 'darkgray',
           marginTop: Platform.OS === 'ios' ? 30 : 0,
         }}>
-        <Header />
+        <Header myNavigation={this.props.navigation} />
         <ScrollView>
           <Collection />
           <Category />
