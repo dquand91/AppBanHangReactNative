@@ -59,7 +59,7 @@ export default class CustomDrawerContentComponent extends Component {
           <MyButton
             myNavigation={this.props.navigation}
             route="Login_Screen"
-            label="Login"
+            label="Sign In"
           />
         </SafeAreaView>
       </ScrollView>

@@ -23,7 +23,7 @@ import Cart from './Main/Shop/Cart/Cart';
 import Search from './Main/Shop/Search/Search';
 import Contact from './Main/Shop/Contact/Contact';
 import SignOut from './Authentication/Signout/SignOut';
-import Login from './Authentication/Login/Login';
+import Authentication from './Authentication/Authentication';
 import CustomDrawerContentComponent from './CustomView/CustomDrawerContentComponent';
 
 const {width} = Dimensions.get('window');
@@ -116,7 +116,7 @@ const myDrawerRouteConfigs = {
     screen: SignOut,
   },
   Login_Screen: {
-    screen: Login,
+    screen: Authentication,
   },
 };
 
