@@ -9,11 +9,9 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
-// Để lấy được kích thước của màn hình hiển thị
 const {width} = Dimensions.get('window');
-// Hình theo tỉ lệ 16/9 (16div9)
-const imageWidth = width - 30;
-const imageHeight = imageWidth / (16 / 9);
+const localhost = '192.168.1.105';
+const imageUrl = `http://${localhost}/AppBanHangServer/images/type/`;
 
 export default class Category extends Component {
   constructor(props) {
@@ -25,50 +23,31 @@ export default class Category extends Component {
     return (
       <View style={styles.wrapper}>
         <Text style={styles.textStyle}>LIST OF CATEGORY</Text>
-        <TouchableOpacity
-          onPress={() =>
-            this.props.myNavigation.navigate('ListProducts_Screen')
-          }>
-          {/* Sử dụng thư viện react-native-swiper */}
-          {/* Sẽ tạo ra 1 slideShow image */}
-          {/* Có thể thêm các thuộc tính khác cho cái Swiper đây, hiện tại chỉ set 3 thuộc tính cơ bản */}
-          <Swiper width={imageWidth} height={imageHeight} autoplay={true}>
-            <ImageBackground
-              source={require('../../../../assets/temp/fit.jpg')}
-              style={styles.imageStyle}>
-              <Text style={styles.textStyle2}>Fit Dress</Text>
-            </ImageBackground>
-            <ImageBackground
-              source={require('../../../../assets/temp/little.jpg')}
-              style={styles.imageStyle}>
-              <Text style={styles.textStyle2}>Little Dress</Text>
-            </ImageBackground>
-            <ImageBackground
-              source={require('../../../../assets/temp/maxi.jpg')}
-              style={styles.imageStyle}>
-              <Text style={styles.textStyle2}>Maxi Dress</Text>
-            </ImageBackground>
-            <ImageBackground
-              source={require('../../../../assets/temp/midi.jpg')}
-              style={styles.imageStyle}>
-              <Text style={styles.textStyle2}>Midi Dress</Text>
-            </ImageBackground>
-            <ImageBackground
-              source={require('../../../../assets/temp/mini.jpg')}
-              style={styles.imageStyle}>
-              <Text style={styles.textStyle2}>Mini Dress</Text>
-            </ImageBackground>
-            <ImageBackground
-              source={require('../../../../assets/temp/party.jpg')}
-              style={styles.imageStyle}>
-              <Text style={styles.textStyle2}>Party Dress</Text>
-            </ImageBackground>
-          </Swiper>
-        </TouchableOpacity>
+
+        <Swiper width={imageWidth} height={imageHeight} autoplay>
+          {this.props.type.map(e => (
+            <TouchableOpacity
+              key={e.id}
+              onPress={() =>
+                this.props.myNavigation.navigate('ListProducts_Screen')
+              }>
+              <ImageBackground
+                source={{uri: imageUrl + e.image}}
+                style={styles.imageStyle}>
+                <Text style={styles.textStyle2}>{e.name}</Text>
+              </ImageBackground>
+            </TouchableOpacity>
+          ))}
+        </Swiper>
       </View>
     );
   }
 }
+
+//933 x 465
+const imageWidth = width - 30;
+const imageHeight = (imageWidth / 933) * 465;
+//const imageHeight = width / 2;
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -83,11 +62,7 @@ const styles = StyleSheet.create({
   imageStyle: {
     width: imageWidth,
     height: imageHeight,
-    // Để canh image ở giữa so với cái view cha của nó
     alignSelf: 'center',
-
-    // Để canh các item con bên trong tấm hình ở giữa
-    // Ví dụ: chữ bên trong tấm hình
     justifyContent: 'center',
   },
   textStyle: {
