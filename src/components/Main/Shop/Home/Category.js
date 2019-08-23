@@ -5,6 +5,7 @@ import {
   Dimensions,
   StyleSheet,
   ImageBackground,
+  TouchableOpacity,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
@@ -24,41 +25,46 @@ export default class Category extends Component {
     return (
       <View style={styles.wrapper}>
         <Text style={styles.textStyle}>LIST OF CATEGORY</Text>
-        {/* Sử dụng thư viện react-native-swiper */}
-        {/* Sẽ tạo ra 1 slideShow image */}
-        {/* Có thể thêm các thuộc tính khác cho cái Swiper đây, hiện tại chỉ set 3 thuộc tính cơ bản */}
-        <Swiper width={imageWidth} height={imageHeight} autoplay={true}>
-          <ImageBackground
-            source={require('../../../../assets/temp/fit.jpg')}
-            style={styles.imageStyle}>
-            <Text style={styles.textStyle2}>Fit Dress</Text>
-          </ImageBackground>
-          <ImageBackground
-            source={require('../../../../assets/temp/little.jpg')}
-            style={styles.imageStyle}>
-            <Text style={styles.textStyle2}>Little Dress</Text>
-          </ImageBackground>
-          <ImageBackground
-            source={require('../../../../assets/temp/maxi.jpg')}
-            style={styles.imageStyle}>
-            <Text style={styles.textStyle2}>Maxi Dress</Text>
-          </ImageBackground>
-          <ImageBackground
-            source={require('../../../../assets/temp/midi.jpg')}
-            style={styles.imageStyle}>
-            <Text style={styles.textStyle2}>Midi Dress</Text>
-          </ImageBackground>
-          <ImageBackground
-            source={require('../../../../assets/temp/mini.jpg')}
-            style={styles.imageStyle}>
-            <Text style={styles.textStyle2}>Mini Dress</Text>
-          </ImageBackground>
-          <ImageBackground
-            source={require('../../../../assets/temp/party.jpg')}
-            style={styles.imageStyle}>
-            <Text style={styles.textStyle2}>Party Dress</Text>
-          </ImageBackground>
-        </Swiper>
+        <TouchableOpacity
+          onPress={() =>
+            this.props.myNavigation.navigate('ListProducts_Screen')
+          }>
+          {/* Sử dụng thư viện react-native-swiper */}
+          {/* Sẽ tạo ra 1 slideShow image */}
+          {/* Có thể thêm các thuộc tính khác cho cái Swiper đây, hiện tại chỉ set 3 thuộc tính cơ bản */}
+          <Swiper width={imageWidth} height={imageHeight} autoplay={true}>
+            <ImageBackground
+              source={require('../../../../assets/temp/fit.jpg')}
+              style={styles.imageStyle}>
+              <Text style={styles.textStyle2}>Fit Dress</Text>
+            </ImageBackground>
+            <ImageBackground
+              source={require('../../../../assets/temp/little.jpg')}
+              style={styles.imageStyle}>
+              <Text style={styles.textStyle2}>Little Dress</Text>
+            </ImageBackground>
+            <ImageBackground
+              source={require('../../../../assets/temp/maxi.jpg')}
+              style={styles.imageStyle}>
+              <Text style={styles.textStyle2}>Maxi Dress</Text>
+            </ImageBackground>
+            <ImageBackground
+              source={require('../../../../assets/temp/midi.jpg')}
+              style={styles.imageStyle}>
+              <Text style={styles.textStyle2}>Midi Dress</Text>
+            </ImageBackground>
+            <ImageBackground
+              source={require('../../../../assets/temp/mini.jpg')}
+              style={styles.imageStyle}>
+              <Text style={styles.textStyle2}>Mini Dress</Text>
+            </ImageBackground>
+            <ImageBackground
+              source={require('../../../../assets/temp/party.jpg')}
+              style={styles.imageStyle}>
+              <Text style={styles.textStyle2}>Party Dress</Text>
+            </ImageBackground>
+          </Swiper>
+        </TouchableOpacity>
       </View>
     );
   }

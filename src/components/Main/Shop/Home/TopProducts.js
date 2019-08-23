@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {View, Text, Image, Dimensions, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import GridView from 'react-native-super-grid';
 
 // Lấy ra chiều rộng của màn hình
@@ -28,11 +35,16 @@ export default class TopProducts extends Component {
           // Danh sách items, có thể thay thế = api ở chỗ này
           items={[sp1, sp2, sp3, sp4, sp5]}
           renderItem={item => (
-            <View style={styles.wrapper2}>
-              <Image source={item} style={styles.imageStyle} />
-              <Text style={styles.productName}>Product name</Text>
-              <Text style={styles.productPrice}>400$</Text>
-            </View>
+            <TouchableOpacity
+              onPress={() =>
+                this.props.myNavigation.navigate('ProductDetails_Screen')
+              }>
+              <View style={styles.wrapper2}>
+                <Image source={item} style={styles.imageStyle} />
+                <Text style={styles.productName}>Product name</Text>
+                <Text style={styles.productPrice}>400$</Text>
+              </View>
+            </TouchableOpacity>
           )}
         />
       </View>
