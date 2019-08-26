@@ -10,6 +10,7 @@ export default class Home extends Component {
     super(props);
     this.state = {
       type: [],
+      topProducts: [],
     };
   }
   // http://172.16.1.39:8888/AppBanHangServer/
@@ -129,7 +130,12 @@ export default class Home extends Component {
     fetch('http://172.16.1.39:8888/AppBanHangServer')
       .then(res => res.json())
       .then(resJSON => {
-        this.setState({type: resJSON.type});
+        console.log(resJSON);
+        console.log(resJSON.product[0].images);
+        this.setState({
+          type: resJSON.type,
+          topProducts: resJSON.product,
+        });
       })
       .catch(error => console.log(error));
   }
@@ -144,7 +150,10 @@ export default class Home extends Component {
             myNavigation={this.props.navigation}
             myType={this.state.type}
           />
-          <TopProducts myNavigation={this.props.navigation} />
+          <TopProducts
+            myNavigation={this.props.navigation}
+            myTopProducts={this.state.topProducts}
+          />
         </ScrollView>
       </View>
     );

@@ -8,9 +8,13 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import GridView from 'react-native-super-grid';
+// import console = require('console');
 
 // Lấy ra chiều rộng của màn hình
 const {width} = Dimensions.get('window');
+
+const localhost = '172.16.1.39:8888';
+const imageUrl = `http://${localhost}/AppBanHangServer/images/product/`;
 
 export default class TopProducts extends Component {
   constructor(props) {
@@ -19,13 +23,6 @@ export default class TopProducts extends Component {
   }
 
   render() {
-    // Lấy các tấm hình từ resource ra
-    // Ở đây dùng data local để demo
-    const sp1 = require('../../../../assets/temp/sp1.jpeg');
-    const sp2 = require('../../../../assets/temp/sp2.jpeg');
-    const sp3 = require('../../../../assets/temp/sp3.jpeg');
-    const sp4 = require('../../../../assets/temp/sp4.jpeg');
-    const sp5 = require('../../../../assets/temp/sp5.jpeg');
     return (
       <View style={styles.wrapper}>
         <Text style={styles.textStyle}>TOP PRODUCTS</Text>
@@ -33,19 +30,27 @@ export default class TopProducts extends Component {
           // itemDimension là props của thư viện, để định min size chiều ngang or dọc cho 1 item
           itemDimension={130}
           // Danh sách items, có thể thay thế = api ở chỗ này
-          items={[sp1, sp2, sp3, sp4, sp5]}
-          renderItem={item => (
-            <TouchableOpacity
-              onPress={() =>
-                this.props.myNavigation.navigate('ProductDetails_Screen')
-              }>
-              <View style={styles.wrapper2}>
-                <Image source={item} style={styles.imageStyle} />
-                <Text style={styles.productName}>Product name</Text>
-                <Text style={styles.productPrice}>400$</Text>
-              </View>
-            </TouchableOpacity>
-          )}
+          items={this.props.myTopProducts}
+          renderItem={({item}) => {
+            console.log(item.images);
+            return (
+              <TouchableOpacity
+                key={item.id}
+                onPress={() =>
+                  this.props.myNavigation.navigate('ProductDetails_Screen')
+                }>
+                {/* {console.log(imageUrl + item.images[0])} */}
+                <View style={styles.wrapper2}>
+                  <Image
+                    source={{uri: imageUrl + item.images[0]}}
+                    style={styles.imageStyle}
+                  />
+                  <Text style={styles.productName}>{item.name}</Text>
+                  <Text style={styles.productPrice}>{item.price}$</Text>
+                </View>
+              </TouchableOpacity>
+            );
+          }}
         />
       </View>
     );
