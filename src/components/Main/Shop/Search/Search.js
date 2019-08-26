@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: '#F6F6F6',
     flex: 1,
+    marginTop: 30,
   },
   product: {
     flexDirection: 'row',

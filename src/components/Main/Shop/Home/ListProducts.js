@@ -33,9 +33,9 @@ export default class ListProducts extends Component {
       colorCircle,
     } = styles;
     return (
-      <View>
+      <View style={{flex: 1, backgroundColor: 'darkgray', marginTop: 30}}>
         <Header myNavigation={this.props.navigation} />
-        <View>
+        <View style={{flex: 1}}>
           <View style={header}>
             <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
               <Image

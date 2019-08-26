@@ -36,7 +36,7 @@ export default class ChangeInfo extends Component {
         <View style={header}>
           <View />
           <Text style={headerTitle}>User Infomation</Text>
-          <TouchableOpacity onPress={() => this.props.myNavigation.goBack()}>
+          <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
             <Image source={backSpecial} style={backIconStyle} />
           </TouchableOpacity>
         </View>
@@ -74,7 +74,7 @@ export default class ChangeInfo extends Component {
 }
 
 const styles = StyleSheet.create({
-  wrapper: {flex: 1, backgroundColor: '#fff'},
+  wrapper: {flex: 1, backgroundColor: '#fff', marginTop: 30},
     header: { flex: 1, backgroundColor: 'darkviolet', alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', paddingHorizontal: 10 },// eslint-disable-line
   headerTitle: {fontFamily: 'Avenir', color: '#fff', fontSize: 20},
   backIconStyle: {width: 30, height: 30},

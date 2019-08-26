@@ -10,7 +10,7 @@ import {
 import Swiper from 'react-native-swiper';
 
 const {width} = Dimensions.get('window');
-const localhost = '192.168.1.105';
+const localhost = '172.16.1.39:8888';
 const imageUrl = `http://${localhost}/AppBanHangServer/images/type/`;
 
 export default class Category extends Component {
@@ -24,17 +24,17 @@ export default class Category extends Component {
       <View style={styles.wrapper}>
         <Text style={styles.textStyle}>LIST OF CATEGORY</Text>
 
-        <Swiper width={imageWidth} height={imageHeight} autoplay>
-          {this.props.type.map(e => (
+        <Swiper width={imageWidth} height={imageHeight} autoplay={true}>
+          {this.props.myType.map(item => (
             <TouchableOpacity
-              key={e.id}
+              key={item.id}
               onPress={() =>
                 this.props.myNavigation.navigate('ListProducts_Screen')
               }>
               <ImageBackground
-                source={{uri: imageUrl + e.image}}
+                source={{uri: imageUrl + item.image}}
                 style={styles.imageStyle}>
-                <Text style={styles.textStyle2}>{e.name}</Text>
+                <Text style={styles.textStyle2}>{item.name}</Text>
               </ImageBackground>
             </TouchableOpacity>
           ))}

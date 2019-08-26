@@ -197,7 +197,7 @@ export default class Order extends Component {
 const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  wrapper: {flex: 1, backgroundColor: '#fff'},
+  wrapper: {flex: 1, backgroundColor: '#fff', marginTop: 30},
     header: { flex: 1, backgroundColor: 'darkviolet', alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', paddingHorizontal: 10 },// eslint-disable-line
   headerTitle: {fontFamily: 'Avenir', color: '#fff', fontSize: 20},
   backIconStyle: {width: 30, height: 30},

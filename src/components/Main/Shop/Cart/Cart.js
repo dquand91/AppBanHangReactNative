@@ -69,7 +69,7 @@ class Cart extends Component {
                 <TouchableOpacity
                   style={showDetailContainer}
                   onPress={() =>
-                    this.props.navigation.navigate('ProductDetails')
+                    this.props.navigation.navigate('ProductDetails_Screen')
                   }>
                   <Text style={txtShowDetail}>SHOW DETAILS</Text>
                 </TouchableOpacity>
@@ -186,6 +186,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: '#DFDFDF',
+    marginTop: 30,
   },
   checkoutButton: {
     height: 50,

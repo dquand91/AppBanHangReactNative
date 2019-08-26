@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderColor: '#D6D6D6',
+    borderColor: 'red',
   },
   imageStyle: {
     width: 30,
