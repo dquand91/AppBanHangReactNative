@@ -37,7 +37,9 @@ export default class TopProducts extends Component {
               <TouchableOpacity
                 key={item.id}
                 onPress={() =>
-                  this.props.myNavigation.navigate('ProductDetails_Screen')
+                  this.props.myNavigation.navigate('ProductDetails_Screen', {
+                    product: item,
+                  })
                 }>
                 {/* {console.log(imageUrl + item.images[0])} */}
                 <View style={styles.wrapper2}>
