@@ -5,26 +5,52 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Alert,
 } from 'react-native';
+import logIn from '../../../api/logIn';
+import Global from '../../Global';
 
 export default class SignIn extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      email: '',
+      password: '',
+    };
+  }
+
+  signIn(email, password) {
+    logIn(email, password)
+      .then(res => {
+        if (res) {
+          //Alert.alert('SignIn successfully!');
+          Global.onSignIn(res.user);
+          this.props.myNavigation.goBack();
+        } else {
+          Alert.alert('SignIn failed!');
+        }
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
+    const {email, password} = this.state;
     return (
       <View style={styles.wrapper}>
         <TextInput
           placeholder="Enter your email"
           style={styles.textInputStyle}
+          value={email}
+          onChangeText={text => this.setState({email: text})}
         />
         <TextInput
           placeholder="Enter your password"
           style={styles.textInputStyle}
+          value={password}
+          onChangeText={text => this.setState({password: text})}
+          secureTextEntry
         />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => this.signIn(email, password)}>
           <View style={styles.button}>
             <Text style={styles.text}>SIGN IN</Text>
           </View>
@@ -48,7 +74,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     alignItems: 'center',
     padding: 5,
-    backgroundColor: 'transparent',
+    backgroundColor: 'darkviolet',
     borderColor: 'white',
     borderWidth: 1,
   },

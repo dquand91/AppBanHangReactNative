@@ -10,8 +10,16 @@ export default class Authencation extends Component {
       isSignIn: true,
     };
   }
+
+  gotoSignIn() {
+    this.setState({isSignIn: true});
+  }
   render() {
-    const MainJSX = this.state.isSignIn ? SignIn : SignUp;
+    const MainJSX = this.state.isSignIn ? (
+      <SignIn myNavigation={this.props.navigation} />
+    ) : (
+      <SignUp myGotoSignIn={() => this.gotoSignIn()} />
+    );
     return (
       <View style={styles.wrapper}>
         <View style={styles.header}>
@@ -27,9 +35,7 @@ export default class Authencation extends Component {
             source={require('../../assets/appIcon/ic_logo.png')}
           />
         </View>
-        <View>
-          <MainJSX />
-        </View>
+        <View>{MainJSX}</View>
         <View style={styles.footer}>
           <TouchableOpacity
             onPress={() => this.setState({isSignIn: true})}

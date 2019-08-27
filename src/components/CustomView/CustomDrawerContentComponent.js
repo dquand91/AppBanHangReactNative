@@ -2,14 +2,22 @@ import React, {Component} from 'react';
 import {View, Text, ScrollView, Image, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import MyButton from './MyButton';
+import Global from '../Global';
 
 export default class CustomDrawerContentComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogedIn: true,
+      isLogedIn: false,
+      username: '',
     };
+    Global.onSignIn = this.onSignIn.bind(this);
   }
+
+  onSignIn(user) {
+    this.setState({username: user.name, isLogedIn: true});
+  }
+
   render() {
     // const { navigate } = this.props.navigation;
     const logOutUI = (
@@ -24,7 +32,7 @@ export default class CustomDrawerContentComponent extends Component {
           </View>
           <View
             style={{marginTop: 10, marginBottom: 100, alignItems: 'center'}}>
-            <Text style={styles.textStyle}>Luong Duong Quan</Text>
+            <Text style={styles.textStyle}>{this.state.username}</Text>
           </View>
           <MyButton
             // myNavigation: là props của MyButton do mình quy định

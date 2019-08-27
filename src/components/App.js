@@ -285,6 +285,7 @@ export default class App extends Component {
   }
 
   removeProduct(productId) {
+    console.log('App ---> removeProduct');
     const newCart = this.state.arrCart.filter(e => e.product.id !== productId);
     this.setState({arrCart: newCart}, () => this.updateProductsInCart());
   }
