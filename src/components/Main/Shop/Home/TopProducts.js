@@ -8,12 +8,12 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import GridView from 'react-native-super-grid';
+import {localhost} from '../../../../api/apiAddress';
 // import console = require('console');
 
 // Lấy ra chiều rộng của màn hình
 const {width} = Dimensions.get('window');
 
-const localhost = '172.16.1.39:8888';
 const imageUrl = `http://${localhost}/AppBanHangServer/images/product/`;
 
 export default class TopProducts extends Component {

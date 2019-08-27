@@ -17,6 +17,8 @@ import Global from '../../../Global';
 import Header from '../Header';
 import sp1 from '../../../../assets/temp/sp1.jpeg';
 
+import {localhost} from '../../../../api/apiAddress';
+
 function toTitleCase(str) {
   //  Để convert chuỗi từ viết thường thành viết hoa chữ cái đầu "duong quan" => "Duong Quan"
   return str.replace(
@@ -25,7 +27,6 @@ function toTitleCase(str) {
   );
 }
 
-const localhost = '172.16.1.39:8888';
 const imageUrl = `http://${localhost}/AppBanHangServer/images/product/`;
 
 class Cart extends Component {

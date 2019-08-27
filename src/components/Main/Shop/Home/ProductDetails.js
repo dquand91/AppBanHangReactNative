@@ -13,11 +13,11 @@ import {withNavigationFocus} from 'react-navigation';
 
 import Global from '../../../Global';
 import Header from '../Header';
+import {localhost} from '../../../../api/apiAddress';
 
 // const back = require('../assets/appIcon/back.png');
 // const cart = require('../assets/appIcon/cart.png');
 
-const localhost = '172.16.1.39:8888';
 const imageUrl = `http://${localhost}/AppBanHangServer/images/product/`;
 
 export default class ProductDetails extends Component {

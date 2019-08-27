@@ -6,7 +6,10 @@ import Category from './Category';
 import TopProducts from './TopProducts';
 import Global from '../../../Global';
 import {withNavigationFocus} from 'react-navigation';
+import {localhost} from '../../../../api/apiAddress';
 
+
+const apiAddress = `http://${localhost}/AppBanHangServer`;
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -129,7 +132,7 @@ export default class Home extends Component {
   // }
 
   componentDidMount() {
-    fetch('http://172.16.1.39:8888/AppBanHangServer')
+    fetch(apiAddress)
       .then(res => res.json())
       .then(resJSON => {
         console.log(resJSON);

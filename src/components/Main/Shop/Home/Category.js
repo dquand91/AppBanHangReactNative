@@ -8,9 +8,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
+import {localhost} from '../../../../api/apiAddress';
 
 const {width} = Dimensions.get('window');
-const localhost = '172.16.1.39:8888';
 const imageUrl = `http://${localhost}/AppBanHangServer/images/type/`;
 
 export default class Category extends Component {
