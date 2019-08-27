@@ -8,6 +8,8 @@ import Global from '../../../Global';
 import {withNavigationFocus} from 'react-navigation';
 import {localhost} from '../../../../api/apiAddress';
 
+import checkLogin from '../../../../api/checkLogin';
+import getToken from '../../../../api/getToken';
 
 const apiAddress = `http://${localhost}/AppBanHangServer`;
 export default class Home extends Component {
@@ -143,6 +145,16 @@ export default class Home extends Component {
         });
       })
       .catch(error => console.log(error));
+
+    getToken()
+      .then(token => checkLogin(token))
+      .then(res => {
+        if (res === 'TOKEN_KHONG_HOP_LE') {
+          return;
+        }
+        Global.onSignIn(res.user);
+      })
+      .catch(err => console.log(err));
   }
 
   render() {

@@ -8,6 +8,7 @@ import {
   Alert,
 } from 'react-native';
 import logIn from '../../../api/logIn';
+import saveToken from '../../../api/saveToken';
 import Global from '../../Global';
 
 export default class SignIn extends Component {
@@ -23,6 +24,7 @@ export default class SignIn extends Component {
     logIn(email, password)
       .then(res => {
         if (res) {
+          saveToken(res.token);
           //Alert.alert('SignIn successfully!');
           Global.onSignIn(res.user);
           this.props.myNavigation.goBack();

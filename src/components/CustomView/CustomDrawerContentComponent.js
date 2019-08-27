@@ -1,8 +1,18 @@
 import React, {Component} from 'react';
-import {View, Text, ScrollView, Image, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import MyButton from './MyButton';
 import Global from '../Global';
+
+// import removeToken from './api/removeToken';
+import removeToken from '../../api/removeToken';
 
 export default class CustomDrawerContentComponent extends Component {
   constructor(props) {
@@ -16,6 +26,10 @@ export default class CustomDrawerContentComponent extends Component {
 
   onSignIn(user) {
     this.setState({username: user.name, isLogedIn: true});
+  }
+
+  onSignOut() {
+    removeToken().then(() => this.setState({username: '', isLogedIn: false}));
   }
 
   render() {
@@ -46,11 +60,11 @@ export default class CustomDrawerContentComponent extends Component {
             route="ChangeInfo_Screen"
             label="Change Info"
           />
-          <MyButton
-            myNavigation={this.props.navigation}
-            route="SignOut_Screen"
-            label="Sign Out"
-          />
+          <TouchableOpacity onPress={() => this.onSignOut()}>
+            <View style={styles.container}>
+              <Text style={styles.textStyle}>Sign Out</Text>
+            </View>
+          </TouchableOpacity>
         </SafeAreaView>
       </ScrollView>
     );
