@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, {Component} from 'react';
 import {
   View,
@@ -29,7 +30,9 @@ export default class Category extends Component {
             <TouchableOpacity
               key={item.id}
               onPress={() =>
-                this.props.myNavigation.navigate('ListProducts_Screen')
+                this.props.myNavigation.navigate('ListProducts_Screen', {
+                  category: item,
+                })
               }>
               <ImageBackground
                 source={{uri: imageUrl + item.image}}
