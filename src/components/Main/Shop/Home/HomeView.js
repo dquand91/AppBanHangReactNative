@@ -10,6 +10,7 @@ import {localhost} from '../../../../api/apiAddress';
 
 import checkLogin from '../../../../api/checkLogin';
 import getToken from '../../../../api/getToken';
+import refreshToken from '../../../../api/refreshToken';
 
 const apiAddress = `http://${localhost}/AppBanHangServer`;
 export default class Home extends Component {
@@ -155,6 +156,9 @@ export default class Home extends Component {
         Global.onSignIn(res.user);
       })
       .catch(err => console.log(err));
+
+    setInterval(() => getToken().then(token => refreshToken(token)), 3000);
+    setInterval(() => getToken().then(token => console.log(token)), 3000);
   }
 
   render() {
