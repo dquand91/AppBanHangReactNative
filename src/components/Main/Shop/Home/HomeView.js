@@ -14,6 +14,8 @@ import refreshToken from '../../../../api/refreshToken';
 
 const apiAddress = `http://${localhost}/AppBanHangServer`;
 export default class Home extends Component {
+  intervalID = 0;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -150,15 +152,31 @@ export default class Home extends Component {
     getToken()
       .then(token => checkLogin(token))
       .then(res => {
+        console.log('getToken HomeView');
         if (res === 'TOKEN_KHONG_HOP_LE') {
           return;
         }
+        console.log('getToken HomeView PASSS');
+        console.log(res);
         Global.onSignIn(res.user);
       })
       .catch(err => console.log(err));
 
-    setInterval(() => getToken().then(token => refreshToken(token)), 3000);
-    setInterval(() => getToken().then(token => console.log(token)), 3000);
+    this.intervalID = setInterval(
+      () =>
+        getToken().then(token => {
+          if (token === '' || token === 'TOKEN_KHONG_HOP_LE') {
+            console.log('Cleared Interval');
+            return clearInterval(this.intervalID);
+          } else {
+            console.log('NOT Cleared');
+            console.log(token);
+            return refreshToken(token);
+          }
+        }),
+      3000,
+    );
+    // setInterval(() => getToken().then(token => console.log(token)), 3000);
   }
 
   render() {

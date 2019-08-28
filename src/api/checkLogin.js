@@ -9,7 +9,13 @@ const checkLogin = token =>
     },
     body: JSON.stringify({token}),
   })
-    .then(res => res.json())
-    .catch(() => 'TOKEN_KHONG_HOP_LE');
+    .then(res => {
+      console.log('checkLogin PASS');
+      return res.json();
+    })
+    .catch(() => {
+      console.log('checkLogin Fail');
+      return 'TOKEN_KHONG_HOP_LE';
+    });
 
 export default checkLogin;

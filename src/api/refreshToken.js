@@ -11,7 +11,11 @@ const refreshToken = token =>
     body: JSON.stringify({token}),
   })
     .then(res => res.text())
-    .then(newToken => saveToken(newToken))
+    .then(newToken => {
+      console.log('refreshToken OK');
+      console.log(newToken);
+      return saveToken(newToken);
+    })
     .catch(err => console.log(err));
 
 export default refreshToken;
