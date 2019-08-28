@@ -174,7 +174,7 @@ export default class Home extends Component {
             return refreshToken(token);
           }
         }),
-      3000,
+      60000,
     );
     // setInterval(() => getToken().then(token => console.log(token)), 3000);
   }
